@@ -3,10 +3,16 @@ package com.example.android.androidbasicsmusicplayer;
 public class SongGenerator {
     private final int MAX_SONG_LENGTH_SECONDS = 360;
     private final int MIN_SONG_LENGTH_SECONDS = 60;
-    private String[] titles = {"Love", "Never", "Pink", "Rose", "Rainbow", "Unicorn", "Love", "Friend", "Dog", "Cat"};
-    private String[] authorFirstName = {"Alexander", "Peter", "John", "Kay", "Jorget", "Ataca", "Luisa", "Sandra", "Maria"};
-    private String[] authorLastName = {"Abreu", "Farel", "Floyed", "Santos", "Jackson", "Lee"};
-    private String[] genre = {"Pop", "Blues", "Rock", "Salsa", "Bachata", "Techno", "Jazz", "Swing", "Classic"};
+    private String[] titles = {"Love", "Never", "Pink", "Rose", "Rainbow", "Unicorn", "Love", "Friend", "Dog", "Cat",
+        "About", "Above", "Change", "Billion", "Challenge", "Difficult", "Enter", "Eternity", "Forget", "Garden", "Heart",
+        "Interest", "Join", "Light", "Magazin", "Nature", "Option", "Pretty", "Question", "Reach", "Sense", "Tree",
+        "Victim", "Wonder", "Yourself"};
+    private String[] authorFirstName = {"Alexander", "Peter", "John", "Kay", "Jorget", "Ataca", "Luisa", "Sandra", "Maria",
+        "Joel", "Romeo", "Bori", "Prince", "Kewin", "Joe", "Kiko", "Christina", "Jennifer", "Milena", "Natti"};
+    private String[] authorLastName = {"Abreu", "Farel", "Floyed", "Santos", "Jackson", "Lee", "Royce", "Cosmos",
+        "Vera", "Rodriguez", "Ferreira", "Lirow", "Picasso", "Bach", "Natasha", "Jaza"};
+    private String[] genre = {"Pop", "Blues", "Rock", "Salsa", "Bachata", "Techno", "Jazz", "Swing", "Classic",
+        "Ska", "RocknRoll", "Instrumental", "Electronic"};
 
     public Song generateSong() {
         String title = generateTitle();
