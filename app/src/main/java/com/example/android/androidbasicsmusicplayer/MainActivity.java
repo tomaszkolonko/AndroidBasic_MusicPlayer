@@ -2,11 +2,21 @@ package com.example.android.androidbasicsmusicplayer;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.GridView;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    private String[] genre = {"Pop", "Blues", "Rock", "Salsa", "Bachata", "Techno", "Jazz", "Swing", "Classic",
+            "Ska", "RocknRoll", "Electronic"};
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +41,23 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < 1000; i++) {
             listOfSongs.add(songGenerator.generateSong());
         }
+
+        final GridView gridView = findViewById(R.id.categoryGridView);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, genre);
+        gridView.setAdapter(adapter);
+
+//        gridView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                switch(v.getId()) {
+//                    case(1):
+//                        Intent intent = new Intent(MainActivity.this, PopActivity.class);
+//                        startActivity(intent);
+//
+//                        Toast.makeText(gridView.getContext(), "ID = 1", Toast.LENGTH_LONG).show();
+//                }
+//            }
+//        });
 
     }
 }

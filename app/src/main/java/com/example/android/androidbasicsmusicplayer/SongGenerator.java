@@ -11,8 +11,8 @@ public class SongGenerator {
         "Joel", "Romeo", "Bori", "Prince", "Kewin", "Joe", "Kiko", "Christina", "Jennifer", "Milena", "Natti"};
     private String[] authorLastName = {"Abreu", "Farel", "Floyed", "Santos", "Jackson", "Lee", "Royce", "Cosmos",
         "Vera", "Rodriguez", "Ferreira", "Lirow", "Picasso", "Bach", "Natasha", "Jaza"};
-    private String[] genre = {"Pop", "Blues", "Rock", "Salsa", "Bachata", "Techno", "Jazz", "Swing", "Classic",
-        "Ska", "RocknRoll", "Instrumental", "Electronic"};
+    private static String[] genre = {"Pop", "Blues", "Rock", "Salsa", "Bachata", "Techno", "Jazz", "Swing", "Classic",
+        "Ska", "RocknRoll", "Electronic"};
 
     public Song generateSong() {
         String title = generateTitle();
@@ -37,6 +37,10 @@ public class SongGenerator {
     private String generateGenre() {
         int position = (int) Math.random() * genre.length;
         return genre[position];
+    }
+
+    public static String[] getGenre() {
+        return genre;
     }
 
 
