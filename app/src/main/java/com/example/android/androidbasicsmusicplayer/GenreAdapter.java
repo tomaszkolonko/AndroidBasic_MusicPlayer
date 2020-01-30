@@ -7,7 +7,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -51,7 +50,14 @@ public class GenreAdapter extends ArrayAdapter<String> {
         genreView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(v.getContext(), "Clicked on " + v.getTag(), Toast.LENGTH_SHORT).show();
+                // Creating and starting an explicit intent
+                Intent intent = new Intent(v.getContext(), ListSongsActivity.class);
+
+                // Put some Extra field to sort by genre in the next activity
+                intent.putExtra("Genre", v.getTag().toString());
+
+                // Start the intent from the current context
+                v.getContext().startActivity(intent);
             }
         });
     }
