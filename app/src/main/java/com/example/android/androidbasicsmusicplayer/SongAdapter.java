@@ -32,10 +32,16 @@ public class SongAdapter extends ArrayAdapter<Song> {
 
         // Lookup view for data population
         TextView songTitle = (TextView) convertView.findViewById(R.id.songTitle);
-        TextView songAuthor = (TextView) convertView.findViewById(R.id.songAuthor);
+        songTitle.setText(song.getTitle());
 
-        // Populate the data into the template view using the data object
-        setSongView(songTitle, songAuthor, song);
+        TextView songAuthor = (TextView) convertView.findViewById(R.id.songAuthor);
+        songAuthor.setText(song.getAuthor());
+
+        TextView songLength = (TextView) convertView.findViewById(R.id.songLegth);
+        songLength.setText(song.getLength() + " sec");
+
+        TextView songGenre = (TextView) convertView.findViewById(R.id.songGenre);
+        songGenre.setText("<" + song.getGenre() + ">");
 
         addOnClickListenerToView(convertView);
 
@@ -60,18 +66,5 @@ public class SongAdapter extends ArrayAdapter<Song> {
 //                v.getContext().startActivity(intent);
             }
         });
-    }
-
-    /**
-     * Populating the single view element with data from song object
-     *
-     * @param songTitle
-     * @param songAuthor
-     * @param song
-     */
-    private void setSongView(TextView songTitle, TextView songAuthor, Song song) {
-        songTitle.setText(song.getTitle());
-        songAuthor.setText(song.getAuthor());
-
     }
 }
