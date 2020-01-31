@@ -10,11 +10,6 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ArrayList<String> listOfGenre = new ArrayList(Arrays.asList("Pop", "Blues", "Rock",
-            "Salsa", "Bachata", "Techno", "Jazz", "Swing", "Classic", "Ska",
-            "RocknRoll", "Electronic"));
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,11 +17,9 @@ public class MainActivity extends AppCompatActivity {
 
         SongGenerator songGenerator = new SongGenerator();
 
-
-
         final GridView gridView = findViewById(R.id.categoryGridView);
 
-        GenreAdapter adapter = new GenreAdapter(this, listOfGenre);
+        GenreAdapter adapter = new GenreAdapter(this, SongGenerator.getListOfGenre());
         gridView.setAdapter(adapter);
 
 

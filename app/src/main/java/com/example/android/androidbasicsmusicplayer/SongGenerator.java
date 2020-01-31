@@ -1,5 +1,8 @@
 package com.example.android.androidbasicsmusicplayer;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class SongGenerator {
     private final int MAX_SONG_LENGTH_SECONDS = 360;
     private final int MIN_SONG_LENGTH_SECONDS = 60;
@@ -23,30 +26,39 @@ public class SongGenerator {
         String title = generateTitle();
         String author = generateAuthor();
         String genre = generateGenre();
-        int length = (int) Math.random() * MAX_SONG_LENGTH_SECONDS + MIN_SONG_LENGTH_SECONDS;
+        int length = generateLength();
         Song song = new Song(title, author, genre, length);
         return song;
     }
 
     private String generateTitle() {
-        int position = (int) Math.random() * titles.length;
-        return titles[position];
+        int first = (int) (Math.random() * titles.length);
+        int second = (int) (Math.random() * titles.length);
+        int third = (int) (Math.random() * titles.length);
+
+        return titles[first] + " " + titles[second] + " " + titles[third];
     }
 
     private String generateAuthor() {
-        int positionFirstName = (int) Math.random() * authorFirstName.length;
-        int positionLastName = (int) Math.random() * authorLastName.length;
+        int positionFirstName = (int) (Math.random() * authorFirstName.length);
+        int positionLastName = (int) (Math.random() * authorLastName.length);
         return authorFirstName[positionFirstName] + " " + authorLastName[positionLastName];
     }
 
     private String generateGenre() {
-        int position = (int) Math.random() * genre.length;
+        int position = (int) (Math.random() * genre.length);
         return genre[position];
     }
 
-    public static String[] getGenre() {
-        return genre;
+    private int generateLength() {
+        int length = (int) (Math.random() * MAX_SONG_LENGTH_SECONDS + MIN_SONG_LENGTH_SECONDS);
+        return length;
     }
+
+    public static ArrayList<String> getListOfGenre() {
+        return new ArrayList(Arrays.asList(genre));
+    }
+
 
 
 }
