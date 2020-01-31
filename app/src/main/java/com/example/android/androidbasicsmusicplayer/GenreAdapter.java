@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 public class GenreAdapter extends ArrayAdapter<String> {
 
-    public GenreAdapter(Context context, ArrayList<String> words) { super(context, 0, words); }
+    public GenreAdapter(Context context, ArrayList<String> listOfGenre) { super(context, 0, listOfGenre); }
 
     @NonNull
     @Override
@@ -25,7 +25,7 @@ public class GenreAdapter extends ArrayAdapter<String> {
 
         // Check if an existing view is being reused, otherwise infalte the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.genre, parent, false);
+            convertView = LayoutInflater.from(getContext()).inflate(R.layout.single_genre_view_element, parent, false);
         }
 
         // Lookup view for data population
@@ -53,7 +53,7 @@ public class GenreAdapter extends ArrayAdapter<String> {
                 // Creating and starting an explicit intent
                 Intent intent = new Intent(v.getContext(), ListSongsActivity.class);
 
-                // Put some Extra field to sort by genre in the next activity
+                // Put some Extra field to sort by single_genre_view_element in the next activity
                 intent.putExtra("Genre", v.getTag().toString());
 
                 // Start the intent from the current context

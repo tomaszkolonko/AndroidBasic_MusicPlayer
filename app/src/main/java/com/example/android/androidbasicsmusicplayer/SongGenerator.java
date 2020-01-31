@@ -14,6 +14,11 @@ public class SongGenerator {
     private static String[] genre = {"Pop", "Blues", "Rock", "Salsa", "Bachata", "Techno", "Jazz", "Swing", "Classic",
         "Ska", "RocknRoll", "Electronic"};
 
+    /**
+     * This is the only way to generate a Song and return it for later use
+     *
+     * @return
+     */
     public Song generateSong() {
         String title = generateTitle();
         String author = generateAuthor();

@@ -1,7 +1,7 @@
 package com.example.android.androidbasicsmusicplayer;
 
 public class Song {
-    private String name;
+    private String title;
     private String author;
     private String genre;
     private int length;
@@ -9,20 +9,20 @@ public class Song {
     /**
      * Simple constructor to create a Song object
      *
-     * @param name
+     * @param title
      * @param author
      * @param genre
      * @param length
      */
-    public Song(String name, String author, String genre, int length) {
-        this.name = name;
+    public Song(String title, String author, String genre, int length) {
+        this.title = title;
         this.author = author;
         this.genre = genre;
         this.length = length;
     }
 
-    public String getName() {
-        return name;
+    public String getTitle() {
+        return title;
     }
 
     public String getAuthor() {
@@ -37,8 +37,8 @@ public class Song {
         return length;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTitle(String title) {
+        this.title = title;
     }
 
     public void setAuthor(String author) {
