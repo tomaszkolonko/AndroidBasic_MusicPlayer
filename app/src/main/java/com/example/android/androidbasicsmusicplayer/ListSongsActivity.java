@@ -16,17 +16,17 @@ public class ListSongsActivity extends AppCompatActivity {
         setContentView(R.layout.song_list_container);
 
         ArrayList<Song> listOfSongs = SongContainer.getListOfSongs();
-        ArrayList<Song> yolo = null;
 
         Bundle extras = getIntent().getExtras();
         if(extras != null && extras.getString("Genre") != null) {
             String genre = extras.getString("Genre");
-            yolo = listOfSongs.stream().filter((Song song) -> song.getGenre().equals(genre)).collect(Collectors.toCollection(ArrayList<Song>::new));
+            listOfSongs = listOfSongs.stream()
+                    .filter((Song song) -> song.getGenre().equals(genre))
+                    .collect(Collectors.toCollection(ArrayList::new));
         }
 
-
-        SongAdapter songAdapter = new SongAdapter(this, yolo);
-        ListView listView = (ListView) findViewById(R.id.songListContainer);
+        SongAdapter songAdapter = new SongAdapter(this, listOfSongs);
+        ListView listView = findViewById(R.id.songListContainer);
         listView.setAdapter(songAdapter);
     }
 }

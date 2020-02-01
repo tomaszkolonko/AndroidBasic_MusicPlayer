@@ -27,7 +27,8 @@ public class SongAdapter extends ArrayAdapter<Song> {
 
         // Check if an existing view is being reused, otherwise infalte the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.single_song_view_element, parent, false);
+            convertView = LayoutInflater.from(getContext())
+                    .inflate(R.layout.single_song_view_element, parent, false);
         }
 
         // Lookup view for data population
