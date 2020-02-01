@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 public class SongAdapter extends ArrayAdapter<Song> {
 
-    public SongAdapter(Context context, ArrayList<Song> songs) { super(context, 0, SongContainer.getListOfSongs()); }
+    public SongAdapter(Context context, ArrayList<Song> songs) { super(context, 0, songs); }
 
     @NonNull
     @Override
@@ -31,17 +31,7 @@ public class SongAdapter extends ArrayAdapter<Song> {
         }
 
         // Lookup view for data population
-        TextView songTitle = (TextView) convertView.findViewById(R.id.songTitle);
-        songTitle.setText(song.getTitle());
-
-        TextView songAuthor = (TextView) convertView.findViewById(R.id.songAuthor);
-        songAuthor.setText(song.getAuthor());
-
-        TextView songLength = (TextView) convertView.findViewById(R.id.songLegth);
-        songLength.setText(song.getLength() + " sec");
-
-        TextView songGenre = (TextView) convertView.findViewById(R.id.songGenre);
-        songGenre.setText("<" + song.getGenre() + ">");
+        setViewAttributes(convertView, song);
 
         addOnClickListenerToView(convertView);
 
@@ -49,7 +39,33 @@ public class SongAdapter extends ArrayAdapter<Song> {
         return convertView;
     }
 
-    public void addOnClickListenerToView(View convertView) {
+    /**
+     * Sets all the attributes the song view needs to be displayed meaningfully
+     *
+     * @param convertView
+     * @param song
+     */
+    private void setViewAttributes(View convertView, Song song) {
+        TextView songTitle = convertView.findViewById(R.id.songTitle);
+        songTitle.setText(song.getTitle());
+
+        TextView songAuthor = convertView.findViewById(R.id.songAuthor);
+        songAuthor.setText(song.getAuthor());
+
+        TextView songLength = convertView.findViewById(R.id.songLegth);
+        songLength.setText(song.getLength() + " sec");
+
+        TextView songGenre = convertView.findViewById(R.id.songGenre);
+        songGenre.setText("<" + song.getGenre() + ">");
+    }
+
+    /**
+     * Sets the onClickListener to each prepared view before it is send to the
+     * song_list_container
+     *
+     * @param convertView
+     */
+    private void addOnClickListenerToView(View convertView) {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
