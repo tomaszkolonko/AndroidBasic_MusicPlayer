@@ -3,13 +3,13 @@ package com.example.android.androidbasicsmusicplayer;
 import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -122,6 +122,8 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
         TextView songGenre = convertView.findViewById(R.id.songGenre);
         songGenre.setText("<" + song.getGenre() + ">");
 
+        convertView.setTag(song.getTitle() + " by " + song.getAuthor());
+
     }
 
     /**
@@ -134,14 +136,17 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
         convertView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                // TODO: Start new PlayingActivity on this specific song with
-                // TODO: previous and future songs of same category
-
-                Toast.makeText(v.getContext(), "testing ", Toast.LENGTH_SHORT).show();
+                Toast toast = Toast.makeText(v.getContext(),
+                        "Playing " + v.getTag().toString(),
+                        Toast.LENGTH_SHORT);
+                toast.setGravity(Gravity.TOP|Gravity.CENTER_HORIZONTAL, 0, 0);
+                toast.show();
 
                 // Creating and starting an explicit intent
                 Intent intent = new Intent(v.getContext(), PlaySongActivity.class);
+                TextView tv = convertView.findViewById(R.id.songTitle);
+                intent.putExtra("Title", ((TextView) convertView.findViewById(R.id.songTitle)).getText());
+                intent.putExtra("Author", ((TextView) convertView.findViewById(R.id.songAuthor)).getText());
 
                 // Start the intent from the current context
                 v.getContext().startActivity(intent);

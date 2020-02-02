@@ -7,14 +7,32 @@
     tools:context=".PlaySongActivity">
 
     <ImageView
+        android:id="@+id/songImagePlayView"
         android:layout_height="wrap_content"
         android:layout_width="match_parent"
-        android:paddingTop="30dp"
-        android:paddingBottom="30dp"
-        android:layout_centerVertical="true"
+        android:paddingTop="100dp"
+        android:scaleType="centerCrop"
         android:layout_centerHorizontal="true"
         android:src="@drawable/alexander_abreu"
         />
+
+    <TextView
+        android:id="@+id/songTitlePlayView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:textSize="18sp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/songImagePlayView" />
+
+    <TextView
+        android:id="@+id/songAuthorPlayView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="14sp"
+        android:layout_centerHorizontal="true"
+        android:paddingBottom="30dp"
+        android:layout_below="@+id/songTitlePlayView" />
 
     <LinearLayout
         android:layout_width="match_parent"
