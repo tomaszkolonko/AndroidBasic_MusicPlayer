@@ -1,11 +1,14 @@
 package com.example.android.androidbasicsmusicplayer;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
 
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -30,35 +33,31 @@ public class ListSongsActivity extends AppCompatActivity {
         ListView listView = findViewById(R.id.songListContainer);
         listView.setAdapter(songAdapter);
 
-        EditText searchResult = (EditText) findViewById(R.id.searchFieldSongContainer);
+        SearchView searchResult = findViewById(R.id.searchFieldSongContainer);
 
-        searchResult.addTextChangedListener(new TextWatcher() {
+        searchResult.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-                listOfSongs = SongContainer.getListOfSongs();
-
+            public boolean onQueryTextSubmit(String query) {
+                Log.v("ListSongActivity::onQueryTextSubmit", "...");
+                return false;
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                //for(Song song : listOfSongs) {
-                //    if(song.getTitle().contains(s.toString())) {
-                //        listOfSongs.remove(song);
-                //    }
-                //}
-                //listView.setAdapter(songAdapter);
-
-                ListSongsActivity.this.songAdapter.getFilter().filter(s);
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
+            public boolean onQueryTextChange(String newText) {
+                Log.v("ListSongActivity::onQueryTextChange", "Filtering for " + newText);
+                songAdapter.getFilter().filter(newText);
+                return false;
             }
         });
 
-
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Toast.makeText(getApplicationContext(), songAdapter.getItem(position).getTitle(),
+                        Toast.LENGTH_SHORT).show();
+            }
+        });
 
         // addOnClickListenerToSearchField(listOfSongs);
     }

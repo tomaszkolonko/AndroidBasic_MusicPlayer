@@ -52,4 +52,8 @@ public class Song {
     public void setLength(int length) {
         this.length = length;
     }
+
+    public String toString() {
+        return title + " by " + author;
+    }
 }

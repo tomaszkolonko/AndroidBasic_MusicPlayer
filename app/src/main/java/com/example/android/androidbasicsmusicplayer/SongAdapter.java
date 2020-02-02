@@ -1,12 +1,15 @@
 package com.example.android.androidbasicsmusicplayer;
 
 import android.content.Context;
+import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -17,7 +20,13 @@ import java.util.ArrayList;
 
 public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
 
-    public SongAdapter(Context context, ArrayList<Song> songs) { super(context, 0, songs); }
+    ArrayList<Song> listOfSongs, listToBeFiltered;
+    SongFilter filter;
+
+    public SongAdapter(Context context, ArrayList<Song> songs) { super(context, 0, songs);
+    this.listOfSongs = songs;
+    this.listToBeFiltered = songs;
+    }
 
     @NonNull
     @Override
@@ -43,22 +52,54 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
     @NonNull
     @Override
     public Filter getFilter() {
-        // TODO #1 make the filter work on your song objects
-        // TODO #2 make it work to filter by other song members
-        return new SongFilter();
+        if(filter == null) {
+            Log.v("SongAdapter::getFilter", "Filter is null, creating new one");
+            filter = new SongFilter(listToBeFiltered, this);
+        }
+        return filter;
     }
 
     private class SongFilter extends Filter {
 
+        ArrayList<Song> filterList;
+        SongAdapter songAdapter;
+
+        public SongFilter(ArrayList<Song> filterList, SongAdapter songAdapter) {
+            this.filterList = filterList;
+            this.songAdapter = songAdapter;
+        }
+
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
-            FilterResults filterResults = new FilterResults();
-            return null;
+            Log.v("SongAdapter::performFiltering", "performing Filtering with: " + constraint);
+            FilterResults results = new FilterResults();
+
+            // check contraint validity
+            if(constraint != null && constraint.length() > 0) {
+                // change to upper case only
+                constraint = constraint.toString().toUpperCase();
+                // store our filtered songs
+                ArrayList<Song> filteredSongs = new ArrayList();
+
+                for(int i = 0; i < filterList.size(); i++) {
+                    if(filterList.get(i).getTitle().toUpperCase().contains(constraint)) {
+                        Log.v("SongAdapter::performFiltering", "filteredSongs.size(): " + filteredSongs.size());
+                        filteredSongs.add(filterList.get(i));
+                    }
+                }
+                results.count = filteredSongs.size();
+                results.values = filteredSongs;
+            } else {
+                results.count = filterList.size();
+                results.values = filterList;
+            }
+            return results;
         }
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-
+            songAdapter.listOfSongs = (ArrayList<Song>) results.values;
+            songAdapter.notifyDataSetChanged();
         }
     }
 
@@ -80,6 +121,7 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
 
         TextView songGenre = convertView.findViewById(R.id.songGenre);
         songGenre.setText("<" + song.getGenre() + ">");
+
     }
 
     /**
@@ -96,16 +138,13 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
                 // TODO: Start new PlayingActivity on this specific song with
                 // TODO: previous and future songs of same category
 
-                Toast.makeText(v.getContext(), "testing", Toast.LENGTH_SHORT).show();
+                Toast.makeText(v.getContext(), "testing ", Toast.LENGTH_SHORT).show();
 
-//                // Creating and starting an explicit intent
-//                Intent intent = new Intent(v.getContext(), ListSongsActivity.class);
-//
-//                // Put some Extra field to sort by single_genre_view_element in the next activity
-//                intent.putExtra("Genre", v.getTag().toString());
-//
-//                // Start the intent from the current context
-//                v.getContext().startActivity(intent);
+                // Creating and starting an explicit intent
+                Intent intent = new Intent(v.getContext(), PlaySongActivity.class);
+
+                // Start the intent from the current context
+                v.getContext().startActivity(intent);
             }
 
 
