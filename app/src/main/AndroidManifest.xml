@@ -11,8 +11,6 @@
         android:theme="@style/AppTheme">
         <activity android:name=".PlaySongActivity"></activity>
         <activity android:name=".ListSongsActivity" />
-        <activity android:name=".Main2Activity" />
-        <activity android:name=".PopActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
