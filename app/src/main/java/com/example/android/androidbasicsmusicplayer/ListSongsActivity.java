@@ -3,7 +3,10 @@ package com.example.android.androidbasicsmusicplayer;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -14,6 +17,7 @@ import java.util.stream.Collectors;
 public class ListSongsActivity extends AppCompatActivity {
 
     private ArrayList<Song> listOfSongs = SongContainer.getListOfSongs();
+    private SongAdapter songAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,9 +26,39 @@ public class ListSongsActivity extends AppCompatActivity {
 
         adaptListOfSongsToCategoryChosenByUser();
 
-        SongAdapter songAdapter = new SongAdapter(this, listOfSongs);
+        songAdapter = new SongAdapter(this, listOfSongs);
         ListView listView = findViewById(R.id.songListContainer);
         listView.setAdapter(songAdapter);
+
+        EditText searchResult = (EditText) findViewById(R.id.searchFieldSongContainer);
+
+        searchResult.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+                listOfSongs = SongContainer.getListOfSongs();
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                //for(Song song : listOfSongs) {
+                //    if(song.getTitle().contains(s.toString())) {
+                //        listOfSongs.remove(song);
+                //    }
+                //}
+                //listView.setAdapter(songAdapter);
+
+                ListSongsActivity.this.songAdapter.getFilter().filter(s);
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+
+
 
         // addOnClickListenerToSearchField(listOfSongs);
     }

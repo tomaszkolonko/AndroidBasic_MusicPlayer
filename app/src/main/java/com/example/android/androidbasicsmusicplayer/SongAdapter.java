@@ -1,12 +1,12 @@
 package com.example.android.androidbasicsmusicplayer;
 
 import android.content.Context;
-import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.LinearLayout;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -15,7 +15,7 @@ import androidx.annotation.Nullable;
 
 import java.util.ArrayList;
 
-public class SongAdapter extends ArrayAdapter<Song> {
+public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
 
     public SongAdapter(Context context, ArrayList<Song> songs) { super(context, 0, songs); }
 
@@ -38,6 +38,28 @@ public class SongAdapter extends ArrayAdapter<Song> {
 
         // Return the completed view to render on screen
         return convertView;
+    }
+
+    @NonNull
+    @Override
+    public Filter getFilter() {
+        // TODO #1 make the filter work on your song objects
+        // TODO #2 make it work to filter by other song members
+        return new SongFilter();
+    }
+
+    private class SongFilter extends Filter {
+
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            FilterResults filterResults = new FilterResults();
+            return null;
+        }
+
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+
+        }
     }
 
     /**
@@ -71,6 +93,9 @@ public class SongAdapter extends ArrayAdapter<Song> {
             @Override
             public void onClick(View v) {
 
+                // TODO: Start new PlayingActivity on this specific song with
+                // TODO: previous and future songs of same category
+
                 Toast.makeText(v.getContext(), "testing", Toast.LENGTH_SHORT).show();
 
 //                // Creating and starting an explicit intent
@@ -82,6 +107,8 @@ public class SongAdapter extends ArrayAdapter<Song> {
 //                // Start the intent from the current context
 //                v.getContext().startActivity(intent);
             }
+
+
         });
     }
 }
