@@ -15,26 +15,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        SongGenerator songGenerator = new SongGenerator();
-
+        // find the correct view, create the custom adapter and set it on the view
         final GridView gridView = findViewById(R.id.categoryGridView);
-
         GenreAdapter adapter = new GenreAdapter(this, SongGenerator.getListOfGenre());
         gridView.setAdapter(adapter);
-
-
-//        gridView.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                switch(v.getId()) {
-//                    case(1):
-//                        Intent intent = new Intent(MainActivity.this, PopActivity.class);
-//                        startActivity(intent);
-//
-//                        Toast.makeText(gridView.getContext(), "ID = 1", Toast.LENGTH_LONG).show();
-//                }
-//            }
-//        });
 
     }
 }
