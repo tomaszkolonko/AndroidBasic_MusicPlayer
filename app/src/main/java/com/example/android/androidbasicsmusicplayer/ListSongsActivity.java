@@ -4,14 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.ArrayList;
@@ -19,7 +15,6 @@ import java.util.stream.Collectors;
 
 public class ListSongsActivity extends AppCompatActivity {
 
-    private ArrayList<Song> listOfSongs = SongContainer.getListOfSongs();
     private SongAdapter songAdapter;
 
     @Override
@@ -29,7 +24,7 @@ public class ListSongsActivity extends AppCompatActivity {
 
         adaptListOfSongsToCategoryChosenByUser();
 
-        songAdapter = new SongAdapter(this, listOfSongs);
+        songAdapter = new SongAdapter(this, SongContainer.getListOfSongsByCurrentGenre());
         ListView listView = findViewById(R.id.songListContainer);
         listView.setAdapter(songAdapter);
 
@@ -71,13 +66,6 @@ public class ListSongsActivity extends AppCompatActivity {
      */
     private void adaptListOfSongsToCategoryChosenByUser() {
         Bundle extras = getIntent().getExtras();
-        if (extras != null && extras.getString("Genre") != null) {
-            if (!extras.getString("Genre").equalsIgnoreCase("random")) {
-                String genre = extras.getString("Genre");
-                listOfSongs = listOfSongs.stream()
-                        .filter((Song song) -> song.getGenre().equals(genre))
-                        .collect(Collectors.toCollection(ArrayList::new));
-            }
-        }
+        SongContainer.filterCurrentListOfSongsByGenre(extras);
     }
 }

@@ -20,12 +20,15 @@ import java.util.ArrayList;
 
 public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
 
-    ArrayList<Song> listOfSongs, listToBeFiltered;
+    ArrayList<Song> listOfSongs = SongContainer.getListOfSongsByCurrentGenre();
+    ArrayList<Song> listOfSongsToBeFiltered;
     SongFilter filter;
 
     public SongAdapter(Context context, ArrayList<Song> songs) { super(context, 0, songs);
-    this.listOfSongs = songs;
-    this.listToBeFiltered = songs;
+        // TODO: understand the following problem
+        // this.listOfSongs = songs; -> lead to both member objects having the same reference
+        // to the very same object on the heap.... why?
+        this.listOfSongsToBeFiltered = songs;
     }
 
     @NonNull
@@ -54,7 +57,7 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
     public Filter getFilter() {
         if(filter == null) {
             Log.v("SongAdapter::getFilter", "Filter is null, creating new one");
-            filter = new SongFilter(listToBeFiltered, this);
+            filter = new SongFilter(listOfSongsToBeFiltered, this);
         }
         return filter;
     }
@@ -73,6 +76,16 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
         protected FilterResults performFiltering(CharSequence constraint) {
             Log.v("SongAdapter::performFiltering", "performing Filtering with: " + constraint);
             FilterResults results = new FilterResults();
+            // TODO: This does not make any sense.
+            // If the following line exists, filterList always has the value of listOfSongs BEFORE
+            // reaching the assignment below... if the line is not present filterList gets smaller
+            // and smaller by each filter-iteration never gaining songs back when constraint is
+            // reduced.
+            filterList = SongContainer.getListOfSongsByCurrentGenre();
+            if(true) {
+                Log.v("yolo", "yolo");
+            }
+            filterList = SongContainer.getCurrentListOfSongs();
 
             // check contraint validity
             if(constraint != null && constraint.length() > 0) {
@@ -98,7 +111,9 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
 
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
-            songAdapter.listOfSongs = (ArrayList<Song>) results.values;
+            listOfSongsToBeFiltered.clear();
+            listOfSongsToBeFiltered.addAll((ArrayList<Song>) results.values);
+            // listOfSongs = (ArrayList<Song>) results.values;
             songAdapter.notifyDataSetChanged();
         }
     }
