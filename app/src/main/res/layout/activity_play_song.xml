@@ -41,6 +41,7 @@
         android:orientation="horizontal">
 
         <ImageButton
+            android:id="@+id/playPreviousButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -48,6 +49,7 @@
             android:src="@drawable/previous" />
 
         <ImageButton
+            android:id="@+id/playButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.7"
@@ -55,6 +57,7 @@
             android:src="@drawable/play" />
 
         <ImageButton
+            android:id="@+id/playNextButton"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
