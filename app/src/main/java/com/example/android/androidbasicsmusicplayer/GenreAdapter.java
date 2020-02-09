@@ -16,8 +16,19 @@ import java.util.ArrayList;
 
 public class GenreAdapter extends ArrayAdapter<String> {
 
-    public GenreAdapter(Context context, ArrayList<String> listOfGenre) { super(context, 0, listOfGenre); }
+    public GenreAdapter(Context context, ArrayList<String> listOfGenre) {
+        super(context, 0, listOfGenre);
+    }
 
+    /**
+     * Returns a populated view of a genre button. The genre array is defined
+     * in the SongGenerator
+     *
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -26,7 +37,8 @@ public class GenreAdapter extends ArrayAdapter<String> {
 
         // Check if an existing view is being reused, otherwise infalte the view
         if (convertView == null) {
-            convertView = LayoutInflater.from(getContext()).inflate(R.layout.single_genre_view_element, parent, false);
+            convertView = LayoutInflater.from(getContext())
+                    .inflate(R.layout.single_genre_view_element, parent, false);
         }
 
         // Lookup view for data population

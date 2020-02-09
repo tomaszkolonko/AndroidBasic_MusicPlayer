@@ -22,7 +22,10 @@ public class ListSongsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.song_list_container);
 
-        adaptListOfSongsToCategoryChosenByUser();
+        // Extracts the extras from the passed intent
+        Bundle extras = getIntent().getExtras();
+        // uses the extras to create a filtered ArrayList<Song> within SongContainer
+        SongContainer.filterCurrentListOfSongsByGenre(extras);
 
         songAdapter = new SongAdapter(this, SongContainer.getListOfSongsByCurrentGenre());
         ListView listView = findViewById(R.id.songListContainer);
@@ -30,6 +33,7 @@ public class ListSongsActivity extends AppCompatActivity {
 
         SearchView searchResult = findViewById(R.id.searchFieldSongContainer);
 
+        // Search mechanisme that searches by constraint within the genre-filtered selection
         searchResult.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
 
             @Override
@@ -53,19 +57,5 @@ public class ListSongsActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
-
-        // addOnClickListenerToSearchField(listOfSongs);
-    }
-
-    /**
-     * This method checks what genre has been clicked on and returns the
-     * corresponding list of Songs, if the "random" button has been clicked
-     * the whole list of all songs will be used.
-     *
-     * @return
-     */
-    private void adaptListOfSongsToCategoryChosenByUser() {
-        Bundle extras = getIntent().getExtras();
-        SongContainer.filterCurrentListOfSongsByGenre(extras);
     }
 }

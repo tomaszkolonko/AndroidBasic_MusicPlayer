@@ -31,6 +31,11 @@ public class SongGenerator {
         return song;
     }
 
+    /**
+     * Generates a random title for the song
+     *
+     * @return
+     */
     private String generateTitle() {
         int first = (int) (Math.random() * titles.length);
         int second = (int) (Math.random() * titles.length);
@@ -39,22 +44,42 @@ public class SongGenerator {
         return titles[first] + " " + titles[second] + " " + titles[third];
     }
 
+    /**
+     * Generates a random author for the song
+     *
+     * @return
+     */
     private String generateAuthor() {
         int positionFirstName = (int) (Math.random() * authorFirstName.length);
         int positionLastName = (int) (Math.random() * authorLastName.length);
         return authorFirstName[positionFirstName] + " " + authorLastName[positionLastName];
     }
 
+    /**
+     * Generates a random genre for the song
+     *
+     * @return
+     */
     private String generateGenre() {
         int position = (int) (Math.random() * genre.length);
         return genre[position];
     }
 
+    /**
+     * Generates a random length for the song
+     *
+     * @return
+     */
     private int generateLength() {
         int length = (int) (Math.random() * MAX_SONG_LENGTH_SECONDS + MIN_SONG_LENGTH_SECONDS);
         return length;
     }
 
+    /**
+     * Getter for the list of genres
+     *
+     * @return
+     */
     public static ArrayList<String> getListOfGenre() {
         return new ArrayList(Arrays.asList(genre));
     }

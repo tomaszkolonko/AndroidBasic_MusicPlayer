@@ -20,17 +20,27 @@ import java.util.ArrayList;
 
 public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
 
-    ArrayList<Song> listOfSongs = SongContainer.getListOfSongsByCurrentGenre();
+    // TODO: understand the following problem
+    // this.listOfSongs = songs; -> lead to both member objects having the same reference
+    // to the very same object on the heap.... why?
+    ArrayList<Song> listOfSongs;
     ArrayList<Song> listOfSongsToBeFiltered;
     SongFilter filter;
 
     public SongAdapter(Context context, ArrayList<Song> songs) { super(context, 0, songs);
-        // TODO: understand the following problem
-        // this.listOfSongs = songs; -> lead to both member objects having the same reference
-        // to the very same object on the heap.... why?
+        this.listOfSongs = songs;
         this.listOfSongsToBeFiltered = songs;
     }
 
+    /**
+     * Returns a populated view of a song TextView. The song array is defined
+     * in the SongGenerator
+     *
+     * @param position
+     * @param convertView
+     * @param parent
+     * @return
+     */
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -52,6 +62,11 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
         return convertView;
     }
 
+    /**
+     * Defines a custom filter for the SearchView and returns it
+     *
+     * @return
+     */
     @NonNull
     @Override
     public Filter getFilter() {
@@ -62,6 +77,9 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
         return filter;
     }
 
+    /**
+     * Private inner class of the SongFilter which is used to filter the songs
+     */
     private class SongFilter extends Filter {
 
         ArrayList<Song> filterList;
@@ -85,7 +103,7 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
             if(true) {
                 Log.v("yolo", "yolo");
             }
-            filterList = SongContainer.getCurrentListOfSongs();
+            filterList = SongContainer.getListOfSongsByCurrentGenre();
 
             // check contraint validity
             if(constraint != null && constraint.length() > 0) {
@@ -109,6 +127,12 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
             return results;
         }
 
+        /**
+         * Updates the ArrayList<Song> and updates the view
+         *
+         * @param constraint
+         * @param results
+         */
         @Override
         protected void publishResults(CharSequence constraint, FilterResults results) {
             listOfSongsToBeFiltered.clear();
@@ -166,8 +190,6 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
                 // Start the intent from the current context
                 v.getContext().startActivity(intent);
             }
-
-
         });
     }
 }
