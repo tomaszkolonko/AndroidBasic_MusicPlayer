@@ -16,20 +16,26 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
 
-    // TODO: understand the following problem
-    // this.listOfSongs = songs; -> lead to both member objects having the same reference
-    // to the very same object on the heap.... why?
     ArrayList<Song> listOfSongs;
     ArrayList<Song> listOfSongsToBeFiltered;
     SongFilter filter;
 
-    public  SongAdapter(Context context, ArrayList<Song> songs) { super(context, 0, songs);
-        this.listOfSongs = songs;
-        this.listOfSongsToBeFiltered = songs;
+    /**
+     * Constructor for the songAdapter
+     *
+     * @param context
+     * @param songs already filterd by Genre !!
+     */
+    public SongAdapter(Context context, ArrayList<Song> songs) { super(context, 0, songs);
+        this.listOfSongs = new ArrayList<>();
+        this.listOfSongs.addAll(songs);
+        this.listOfSongsToBeFiltered = new ArrayList<>();
+        this.listOfSongsToBeFiltered.addAll(songs);
     }
 
     /**
@@ -82,7 +88,7 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
      */
     private class SongFilter extends Filter {
 
-        ArrayList<Song> filterList;
+        ArrayList<Song> filterList = new ArrayList<>();
         SongAdapter songAdapter;
 
         public SongFilter(ArrayList<Song> filterList, SongAdapter songAdapter) {
@@ -94,16 +100,7 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
         protected FilterResults performFiltering(CharSequence constraint) {
             Log.v("SongAdapter::performFiltering", "performing Filtering with: " + constraint);
             FilterResults results = new FilterResults();
-            // TODO: This does not make any sense.
-            // If the following line exists, filterList always has the value of listOfSongs BEFORE
-            // reaching the assignment below... if the line is not present filterList gets smaller
-            // and smaller by each filter-iteration never gaining songs back when constraint is
-            // reduced.
-            filterList = SongContainer.getListOfSongsByCurrentGenre();
-
-            Log.v("yolo", "yolo");
-
-            filterList = SongContainer.getCurrentListOfSongs();
+            filterList = listOfSongs;
 
             // check contraint validity
             if(constraint != null && constraint.length() > 0) {

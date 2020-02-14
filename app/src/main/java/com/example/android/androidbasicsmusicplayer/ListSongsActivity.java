@@ -24,9 +24,10 @@ public class ListSongsActivity extends AppCompatActivity {
         // Extracts the extras from the passed intent
         Bundle extras = getIntent().getExtras();
         // uses the extras to create a filtered ArrayList<Song> within SongContainer
-        SongContainer.filterCurrentListOfSongsByGenre(extras);
+        SongContainer songContainer = new SongContainer();
+        songContainer.filterCurrentListOfSongsByGenre(extras);
 
-        songAdapter = new SongAdapter(this, SongContainer.getListOfSongsByCurrentGenre());
+        songAdapter = new SongAdapter(this, songContainer.getListOfSongsByCurrentGenre());
         ListView listView = findViewById(R.id.songListContainer);
         listView.setAdapter(songAdapter);
 

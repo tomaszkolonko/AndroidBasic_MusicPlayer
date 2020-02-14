@@ -7,11 +7,16 @@ import java.util.stream.Collectors;
 
 public class SongContainer {
 
-    private static ArrayList<Song> listOfSongs = new ArrayList();
-    // TODO: Understand how it is possible that this private member is changed with
-    // TODO: each character added to the SearchView (filter)
-    private static ArrayList<Song> listOfSongsByCurrentGenre = new ArrayList();
-    private static SongGenerator songGenerator = new SongGenerator();
+    private ArrayList<Song> listOfSongs;
+    private ArrayList<Song> listOfSongsByCurrentGenre;
+    private SongGenerator songGenerator;
+
+
+    public SongContainer() {
+        this.listOfSongs = new ArrayList();
+        this.listOfSongsByCurrentGenre = new ArrayList();
+        this.songGenerator = new SongGenerator();
+    }
 
     /**
      * This method extracts the genre which was passed in with the intent and
@@ -20,7 +25,7 @@ public class SongContainer {
      *
      * @param extras
      */
-    public static void filterCurrentListOfSongsByGenre(Bundle extras) {
+    public void filterCurrentListOfSongsByGenre(Bundle extras) {
         if (extras != null && extras.getString("Genre") != null) {
             if (!extras.getString("Genre").equalsIgnoreCase("random")) {
                 String genre = extras.getString("Genre");
@@ -40,7 +45,7 @@ public class SongContainer {
      *
      * @return
      */
-    public static ArrayList<Song> getCurrentListOfSongs() {
+    public ArrayList<Song> getCurrentListOfSongs() {
         return listOfSongs;
     }
 
@@ -49,7 +54,7 @@ public class SongContainer {
      *
      * @return
      */
-    public static ArrayList<Song> getListOfSongsByCurrentGenre() {
+    public ArrayList<Song> getListOfSongsByCurrentGenre() {
         return listOfSongsByCurrentGenre;
     }
 
@@ -60,7 +65,7 @@ public class SongContainer {
      *
      * @return
      */
-    private static ArrayList<Song> getOrCreateIfEmptyListOfSongs() {
+    private ArrayList<Song> getOrCreateIfEmptyListOfSongs() {
         if(listOfSongs.isEmpty()) {
             createSongContainer();
         }
@@ -71,7 +76,7 @@ public class SongContainer {
      * Creates 1000 random song objects and adds them to the listOfSongs member. This
      * method can only be called from within this class.
      */
-    private static void createSongContainer() {
+    private void createSongContainer() {
         for (int i = 0; i < 1000; i++) {
             listOfSongs.add(songGenerator.generateSong());
         }
