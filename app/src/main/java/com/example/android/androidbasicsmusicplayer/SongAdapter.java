@@ -16,7 +16,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
@@ -32,10 +31,12 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
      * @param songs already filterd by Genre !!
      */
     public SongAdapter(Context context, ArrayList<Song> songs) { super(context, 0, songs);
+        // Since you don't want to change the referenced ArrayList copy by element
         this.listOfSongs = new ArrayList<>();
         this.listOfSongs.addAll(songs);
-        this.listOfSongsToBeFiltered = new ArrayList<>();
-        this.listOfSongsToBeFiltered.addAll(songs);
+
+        // here you actually want the reference to the list within the songContainer !!!
+        this.listOfSongsToBeFiltered = songs;
     }
 
     /**
@@ -100,6 +101,7 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
         protected FilterResults performFiltering(CharSequence constraint) {
             Log.v("SongAdapter::performFiltering", "performing Filtering with: " + constraint);
             FilterResults results = new FilterResults();
+            // Always use the full list of Songs by genre to filter from
             filterList = listOfSongs;
 
             // check contraint validity
