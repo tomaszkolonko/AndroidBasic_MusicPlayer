@@ -167,7 +167,7 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
 
     /**
      * Sets the onClickListener to each prepared view before it is send to the
-     * song_list_container
+     * activity_list_songs
      *
      * @param convertView
      */

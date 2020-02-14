@@ -3,36 +3,45 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#fff6c4"
+    android:label="@string/activity_play_song_label"
     android:orientation="vertical"
     tools:context=".PlaySongActivity">
 
+    <Button
+        android:id="@+id/home_button_play_song_activity"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:background="#fcd303"
+        android:text="Home" />
+
     <ImageView
         android:id="@+id/songImagePlayView"
-        android:layout_height="wrap_content"
         android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
         android:paddingTop="100dp"
         android:scaleType="centerCrop"
-        android:layout_centerHorizontal="true"
-        android:src="@drawable/alexander_abreu"
-        />
+        android:src="@drawable/alexander_abreu" />
 
     <TextView
         android:id="@+id/songTitlePlayView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:textSize="18sp"
+        android:layout_below="@+id/songImagePlayView"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/songImagePlayView" />
+        android:layout_marginTop="40dp"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/songAuthorPlayView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="14sp"
+        android:layout_below="@+id/songTitlePlayView"
         android:layout_centerHorizontal="true"
         android:paddingBottom="30dp"
-        android:layout_below="@+id/songTitlePlayView" />
+        android:textSize="14sp" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -45,6 +54,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#fcd303"
             android:scaleType="fitCenter"
             android:src="@drawable/previous" />
 
@@ -53,6 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="0.7"
+            android:background="#fcd303"
             android:scaleType="fitCenter"
             android:src="@drawable/play" />
 
@@ -61,6 +72,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="#fcd303"
             android:scaleType="fitCenter"
             android:src="@drawable/next" />
 

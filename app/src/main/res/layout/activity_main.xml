@@ -6,30 +6,32 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/test_small"
-    android:scaleType="centerCrop"
+    android:label="@string/activity_main_label"
     android:orientation="vertical"
-    android:paddingBottom="20dp">
+    android:paddingBottom="20dp"
+    android:scaleType="centerCrop">
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="60dp" />
+
     <GridView
         android:id="@+id/categoryGridView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="100dp"
         android:layout_gravity="center_vertical"
-        android:numColumns="3"
         android:columnWidth="50dp"
+        android:numColumns="3"
+        android:paddingTop="100dp"
         android:stretchMode="columnWidth"
-        tools:context=".MainActivity">
-    </GridView>
+        tools:context=".MainActivity" />
+
     <TextView
         android:id="@+id/randomGenre"
-        android:layout_alignBottom="@id/categoryGridView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/categoryGridView"
         android:layout_marginTop="30dp"
         android:background="#fcd303"
         android:gravity="center_vertical|center_horizontal"
