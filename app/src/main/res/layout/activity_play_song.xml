@@ -32,7 +32,7 @@
         android:layout_below="@+id/songImagePlayView"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="40dp"
-        android:textSize="18sp" />
+        android:textSize="@dimen/text_big" />
 
     <TextView
         android:id="@+id/songAuthorPlayView"
@@ -41,7 +41,7 @@
         android:layout_below="@+id/songTitlePlayView"
         android:layout_centerHorizontal="true"
         android:paddingBottom="30dp"
-        android:textSize="14sp" />
+        android:textSize="@dimen/text_small_next" />
 
     <LinearLayout
         android:layout_width="match_parent"

@@ -2,12 +2,12 @@
     android:id="@+id/songLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical" >
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal" >
 
         <TextView
             android:id="@+id/songTitle"
@@ -15,11 +15,11 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:minHeight="?android:attr/listPreferredItemHeightSmall"
-            android:paddingLeft="16dp"
-            android:paddingTop="16dp"
+            android:paddingLeft="@dimen/standard_padding"
+            android:paddingTop="@dimen/standard_padding"
             android:textAllCaps="true"
             android:textAppearance="?android:attr/textAppearanceListItemSmall"
-            android:textSize="18dp" />
+            android:textSize="@dimen/text_big" />
 
         <TextView
             android:id="@+id/songLegth"
@@ -27,10 +27,11 @@
             android:layout_height="wrap_content"
             android:gravity="right"
             android:minHeight="?android:attr/listPreferredItemHeightSmall"
-            android:paddingLeft="16dp"
-            android:paddingTop="16dp"
+            android:paddingLeft="@dimen/standard_padding"
+            android:paddingTop="@dimen/standard_padding"
+            android:paddingRight="@dimen/standard_padding"
             android:textAppearance="?android:attr/textAppearanceListItemSmall"
-            android:textSize="12dp" />
+            android:textSize="@dimen/text_small" />
     </LinearLayout>
 
 
@@ -40,19 +41,19 @@
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
         android:minHeight="?android:attr/listPreferredItemHeightSmall"
-        android:paddingLeft="16dp"
+        android:paddingStart="@dimen/standard_padding"
         android:text="Placeholder"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
-        android:textSize="12dp" />
+        android:textSize="@dimen/text_small" />
 
     <TextView
         android:id="@+id/songGenre"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center_vertical"
-        android:paddingLeft="16dp"
-        android:paddingBottom="16dp"
+        android:paddingLeft="@dimen/standard_padding"
+        android:paddingBottom="@dimen/standard_padding"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
-        android:textSize="10dp" />
+        android:textSize="@dimen/text_extra_small" />
 
 </LinearLayout>

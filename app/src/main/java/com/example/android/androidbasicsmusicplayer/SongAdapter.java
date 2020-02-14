@@ -27,7 +27,7 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
     ArrayList<Song> listOfSongsToBeFiltered;
     SongFilter filter;
 
-    public SongAdapter(Context context, ArrayList<Song> songs) { super(context, 0, songs);
+    public  SongAdapter(Context context, ArrayList<Song> songs) { super(context, 0, songs);
         this.listOfSongs = songs;
         this.listOfSongsToBeFiltered = songs;
     }
@@ -100,10 +100,10 @@ public class SongAdapter extends ArrayAdapter<Song> implements Filterable {
             // and smaller by each filter-iteration never gaining songs back when constraint is
             // reduced.
             filterList = SongContainer.getListOfSongsByCurrentGenre();
-            if(true) {
-                Log.v("yolo", "yolo");
-            }
-            filterList = SongContainer.getListOfSongsByCurrentGenre();
+
+            Log.v("yolo", "yolo");
+
+            filterList = SongContainer.getCurrentListOfSongs();
 
             // check contraint validity
             if(constraint != null && constraint.length() > 0) {

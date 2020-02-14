@@ -16,13 +16,12 @@
 
         <androidx.appcompat.widget.SearchView
             android:id="@+id/searchFieldSongContainer"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_weight="6"
             android:drawableEnd="@android:drawable/ic_menu_search"
-            android:hint="Search for Title"
             android:inputType="text"
             android:maxLines="1"
             android:paddingStart="10dp"
@@ -43,6 +42,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:padding="16dp"
-        tools:context=".ListSongsActivity"></ListView>
+        android:padding="@dimen/standard_padding"
+        tools:context=".ListSongsActivity" />
 </LinearLayout>

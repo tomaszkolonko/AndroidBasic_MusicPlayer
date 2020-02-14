@@ -39,5 +39,5 @@
         android:tag="random"
         android:text="Random"
         android:textAppearance="?android:attr/textAppearanceListItemSmall"
-        android:textSize="16sp" />
+        android:textSize="@dimen/text_medium" />
 </LinearLayout>
