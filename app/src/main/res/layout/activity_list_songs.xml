@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#fff6c4"
-    android:label="@string/activity_list_songs_label"
     android:orientation="vertical"
     android:scaleType="centerCrop">
 
