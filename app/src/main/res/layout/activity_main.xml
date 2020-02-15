@@ -5,7 +5,7 @@
     android:id="@+id/rootLinearLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/test_small"
+    android:background="@drawable/test"
     android:label="@string/activity_main_label"
     android:orientation="vertical"
     android:paddingBottom="20dp"

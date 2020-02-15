@@ -20,8 +20,9 @@
         android:id="@+id/songImagePlayView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:layout_centerInParent="true"
         android:paddingTop="100dp"
+        android:paddingBottom="100dp"
         android:scaleType="centerCrop"
         android:src="@drawable/alexander_abreu" />
 
@@ -31,7 +32,6 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/songImagePlayView"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="40dp"
         android:textSize="@dimen/text_big" />
 
     <TextView
