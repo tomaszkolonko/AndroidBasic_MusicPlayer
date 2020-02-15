@@ -3,4 +3,5 @@
     <string name="activity_main_label">Android Music Player</string>
     <string name="activity_list_songs_label">List View by Genre</string>
     <string name="activity_play_song_label">Playing a Song</string>
+    <string name="placeholder">Placeholder For The View</string>
 </resources>

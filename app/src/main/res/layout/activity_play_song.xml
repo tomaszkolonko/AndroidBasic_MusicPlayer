@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,11 +10,13 @@
 
     <Button
         android:id="@+id/home_button_play_song_activity"
-        android:layout_height="wrap_content"
         android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_alignParentRight="true"
         android:background="#fcd303"
-        android:text="Home" />
+        android:text="Home"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/songImagePlayView"
@@ -23,7 +26,12 @@
         android:paddingTop="100dp"
         android:paddingBottom="100dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/alexander_abreu" />
+        android:src="@drawable/alexander_abreu"
+        app:layout_constraintBottom_toTopOf="@+id/playButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <TextView
         android:id="@+id/songTitlePlayView"
@@ -31,7 +39,14 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/songImagePlayView"
         android:layout_centerHorizontal="true"
-        android:textSize="@dimen/text_big" />
+        android:text="@string/placeholder"
+        android:textSize="@dimen/text_big"
+        app:layout_constraintBottom_toTopOf="@+id/songAuthorPlayView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/songImagePlayView"
+        app:layout_constraintVertical_bias="0.369" />
 
     <TextView
         android:id="@+id/songAuthorPlayView"
@@ -39,43 +54,57 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/songTitlePlayView"
         android:layout_centerHorizontal="true"
-        android:paddingBottom="30dp"
-        android:textSize="@dimen/text_small_next" />
+        android:layout_marginBottom="80dp"
+        android:text="@string/placeholder"
+        android:textSize="@dimen/text_small_next"
+        app:layout_constraintBottom_toTopOf="@+id/playButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal">
+    <ImageButton
+        android:id="@+id/playPreviousButton"
+        android:layout_width="0dp"
+        android:layout_height="83dp"
+        android:layout_weight="1"
+        android:background="#fcd303"
+        android:scaleType="fitCenter"
+        android:src="@drawable/previous"
+        app:layout_constraintBottom_toBottomOf="@+id/playButton"
+        app:layout_constraintEnd_toStartOf="@+id/playButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent" />
 
-        <ImageButton
-            android:id="@+id/playPreviousButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#fcd303"
-            android:scaleType="fitCenter"
-            android:src="@drawable/previous" />
+    <ImageButton
+        android:id="@+id/playButton"
+        android:layout_width="0dp"
+        android:layout_height="83dp"
+        android:layout_weight="1"
+        android:background="#fcd303"
+        android:scaleType="fitCenter"
+        android:src="@drawable/play"
+        app:layout_constraintBottom_toBottomOf="@+id/playNextButton"
+        app:layout_constraintEnd_toStartOf="@+id/playNextButton"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/playPreviousButton" />
 
-        <ImageButton
-            android:id="@+id/playButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="0.7"
-            android:background="#fcd303"
-            android:scaleType="fitCenter"
-            android:src="@drawable/play" />
+    <ImageButton
+        android:id="@+id/playNextButton"
+        android:layout_width="0dp"
+        android:layout_height="83dp"
+        android:layout_weight="1"
+        android:background="#fcd303"
+        android:scaleType="fitCenter"
+        android:src="@drawable/next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/playButton" />
 
-        <ImageButton
-            android:id="@+id/playNextButton"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:background="#fcd303"
-            android:scaleType="fitCenter"
-            android:src="@drawable/next" />
+    <androidx.constraintlayout.widget.Barrier
+        android:id="@+id/barrier"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:barrierDirection="top" />
 
-    </LinearLayout>
-
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
